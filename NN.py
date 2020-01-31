@@ -99,8 +99,15 @@ y_pred = model.predict(X_test)
 
 
 results = model.evaluate(X_test, y_test)
+print(results)
+#X_train[0:1]
+#X_train[0:1].shape
+#asd = model.predict(X_train[0:1])
 
-X_train[0:1]
-X_train[0:1].shape
-asd = model.predict(X_train[0:1])
-
+# serialize model to JSON
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
